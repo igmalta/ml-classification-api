@@ -1,0 +1,26 @@
+version: "3"
+
+services:
+  app:
+    build: .
+    ports:
+      - "8000:8000"
+    depends_on:
+      - mongo
+    environment:
+      MODEL_PATH: "${MODEL_PATH}"
+      ZERO_SHOT_MODEL: "${ZERO_SHOT_MODEL}"
+      SECRET_KEY: "${SECRET_KEY}"
+      ACCESS_TOKEN_EXPIRE_MINUTES: "${ACCESS_TOKEN_EXPIRE_MINUTES}"
+      DB_NAME: "${DB_NAME}"
+      DB_ALIAS: "${DB_ALIAS}"
+      DB_HOST: "${DB_HOST}"
+      DB_PORT: "${DB_PORT}"
+
+  mongo:
+    image: mongo:4.2
+    ports:
+      - 27017:27017
+
+
+
